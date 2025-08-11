@@ -1,6 +1,15 @@
 
 <template>
   <div class="sidebar-container" >
+    <!-- logo区域 -->
+    <div class="logo-container">
+      <img
+          class="logo-img"
+          src="@/assets/logo/logo.png"
+          alt="Logo"
+      />
+    </div>
+    <!-- 侧边栏内容 -->
     <div class="sidebar">
       <t-menu
           v-model:expanded="expanded"
@@ -9,14 +18,6 @@
           expand-mutex
           :collapsed="collapsed"
       >
-        <template #logo>
-          <img
-              height="28px"
-              class="logo-img"
-              src="@/assets/logo/logo.png"
-              alt="Logo"
-          />
-        </template>
         <t-submenu value="functional-test">
           <template #icon>
             <t-icon name="check-rectangle" />
@@ -75,11 +76,6 @@
           <t-menu-item value="project-config-plans"> 流程配置 </t-menu-item>
           <t-menu-item value="project-config-SOC"> 系统集成配置 </t-menu-item>
         </t-submenu>
-        <template #operations>
-          <t-button variant="text" shape="square" @click="changeCollapsed">
-            <template #icon><t-icon name="view-list" /></template>
-          </t-button>
-        </template>
       </t-menu>
     </div>
   </div>
@@ -89,9 +85,6 @@
 import {ref} from "vue";
 
 const collapsed = ref(false);
-const changeCollapsed = () => {
-  collapsed.value = !collapsed.value;
-};
 
 // 初始展开
 const expanded = ref(['functional-test']);
@@ -100,6 +93,58 @@ const expanded = ref(['functional-test']);
 
 <style scoped>
   .sidebar-container {
-    height: 100vh;
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    border-radius: 20px;
+    height: 100%;
+    background: linear-gradient(135deg, #7db2c5 0%, #62bfd4 100%);
+    overflow: hidden;
+  }
+
+  :deep(.t-default-menu__inner .t-menu--scroll) {
+    background: linear-gradient(135deg, #7db2c5 0%, #62bfd4 100%);
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    padding: 30px 0;
+
+  }
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter:  blur(10px);
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  /* logo 动态效果 */
+  .logo-img:hover {
+    transform: scale(1.05);
+  }
+
+  :deep(.t-menu__content) {
+    color: white;
+  }
+  :deep(.t-default-menu .t-menu__item .t-fake-arrow) {
+    color: white;
+  }
+
+  :deep(.t-default-menu .t-menu__item .t-icon) {
+    color: white;
+  }
+
+  :deep(.t-default-menu .t-menu__item.t-is-active:not(.t-is-opened)) {
+    background-color: #90cfe6;
   }
 </style>
