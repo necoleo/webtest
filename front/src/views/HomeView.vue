@@ -38,9 +38,17 @@
     width: 100%;
     height: 100vh;
     min-height: 796px;
-    background: linear-gradient(135deg, #7db2c5 0%, #62bfd4 100%);
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+  }
+
+  .sidebar-content {
+    height: 100vh;
+  }
+
+  :deep(.t-layout__sider) {
+    overflow: hidden;
+    border-radius: 20px;
   }
 </style>
